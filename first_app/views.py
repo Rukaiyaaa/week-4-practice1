@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from first_app.forms import ExampleForm
+from . import models
 
 
 # Create your views here.
-
 def djangoForm(request):
     if request.method == 'POST':
         form = ExampleForm(request.POST)
@@ -16,4 +16,8 @@ def djangoForm(request):
 
 
 def home(request):
-    return render(request, 'home.html')
+    form = models.Practice.objects.all()
+    print(form)
+    return render(request, 'index.html', {'form': form})
+
+
